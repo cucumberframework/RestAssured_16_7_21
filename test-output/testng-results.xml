@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="4843" started-at="2021-07-21T19:45:26 IST" finished-at="2021-07-21T19:45:30 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="4843" started-at="2021-07-21T19:45:26 IST" finished-at="2021-07-21T19:45:30 IST">
+      <class name="RestAssured_16_7_21.DynamicJson_2">
+        <test-method status="PASS" signature="addBook()[pri:0, instance:RestAssured_16_7_21.DynamicJson_2@c46bcd4]" name="addBook" duration-ms="4777" started-at="2021-07-21T19:45:26 IST" finished-at="2021-07-21T19:45:30 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addBook -->
+      </class> <!-- RestAssured_16_7_21.DynamicJson_2 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
