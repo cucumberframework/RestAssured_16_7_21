@@ -3,11 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="RestAssured_16_7_21.DynamicJson_2">
+      <class name="RequestSpecBuilder_Implementation.SpecBuilder">
         <methods>
-          <include name="addBook"/>
+          <include name="tc_2"/>
+          <include name="beforeSuite"/>
         </methods>
-      </class> <!-- RestAssured_16_7_21.DynamicJson_2 -->
+      </class> <!-- RequestSpecBuilder_Implementation.SpecBuilder -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

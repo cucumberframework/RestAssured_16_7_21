@@ -1,0 +1,15 @@
+
+{
+	"tc_1": {
+		"Accuracy": 50,
+		"Name": "Om Villa",
+		"PhoneNumber": "9892338563",
+		"Address": "Bhilgaon Address",
+		"WebSite": "www.automationsea.com",
+		"Language": "English"
+	},
+	"RequestParameters": {
+	
+		
+}
+}

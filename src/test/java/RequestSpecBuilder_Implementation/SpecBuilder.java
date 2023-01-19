@@ -3,10 +3,19 @@ package RequestSpecBuilder_Implementation;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.json.simple.parser.ParseException;
+import org.testng.annotations.Test;
+
+import com.sun.xml.bind.v2.runtime.unmarshaller.IntData;
+
+import BaseTest.BaseClass;
 import Setters_implementationP.Location;
+import Setters_implementationP.SettersMain;
 import Setters_implementationP.placeAPI_Serialization;
 import files.payload;
 import io.restassured.RestAssured;
@@ -16,9 +25,14 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
-public class SpecBuilder {
-
-	public static void main(String[] args) {
+public class SpecBuilder extends BaseClass {
+	private static  Map<String, String> testData; 
+    private static placeAPI_Serialization place; 
+	
+    
+    @Test
+	public static void tc_1() throws IOException, ParseException {
+		
 		/*
 		 * GET_PLACE RestAssured.baseURI="XXXX";
 		 * 
@@ -39,31 +53,15 @@ public class SpecBuilder {
 		 * contentType("application/json").extract().response();
 		 * 
 		 */
-
-		placeAPI_Serialization place = new placeAPI_Serialization();
-
-		place.setAccuracy(50);
-		place.setName("Om Villa");
-		place.setPhone_number("9892338563");
-		place.setAddress("Bhilgaon Address");
-		place.setWebsite("www.automationsea.com");
-		place.setLanguage("English");
-		Location l = new Location();
-		l.setLat(-30.22);
-		l.setLng(-45.33);
-		place.setLocation(l);
-		List<String> type = new ArrayList<String>();
-		type.add("Test One");
-		type.add("test two");
-		place.setType(type);
-
-		// In RequestSpec builder we keep all the reusable content of the request in
+		testData= BaseClass.getTestData("api/location.json");
+		place= SettersMain.placeApiSetters(testData); 
+				// In RequestSpec builder we keep all the reusable content of the request in
 		// request spec builder so that we can reuse it every time without writing the
 		// same piece of code every time
 		// like Content type , headers , Base URI ,Query parameter which is common for
 		// all the type of methods like get ,post , put is kept in request specification
 		RequestSpecification req = new RequestSpecBuilder().setContentType(ContentType.JSON)
-				.setBaseUri("https://rahulshettyacademy.com").addQueryParam("key", "qaclick123").build();
+				.setBaseUri(BaseClass.prop.getProperty("baseURL")).addQueryParam("key", "qaclick123").build();
 		
 
 		// We will be putting the reusable response and compare it , for that we will be
@@ -79,5 +77,11 @@ public class SpecBuilder {
 				.spec(responseBuilder).extract().response().asString();
 
 		System.out.println(response);
+	}
+	
+	@Test
+	public static void tc_2() throws IOException, ParseException { 
+		System.out.println("This is tc2");
+		testData= BaseClass.getTestData("api/location.json");
 	}
 }
