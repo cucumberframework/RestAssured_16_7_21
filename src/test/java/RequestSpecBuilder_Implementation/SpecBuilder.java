@@ -11,7 +11,7 @@ import java.util.Map;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.IntData;
+//import com.sun.xml.bind.v2.runtime.unmarshaller.IntData;
 
 import BaseTest.BaseClass;
 import Setters_implementationP.Location;
@@ -48,7 +48,7 @@ public class SpecBuilder extends BaseClass {
 		 * Response res=given().queryParam("key",
 		 * "qaclick123").header("Content-Type","application/json")
 		 * 
-		 * .body(“delete_Place_json”) .when().post("/maps/api/place/delete/json").
+		 * .body(ï¿½delete_Place_jsonï¿½) .when().post("/maps/api/place/delete/json").
 		 * then().assertThat().statusCode(200).
 		 * contentType("application/json").extract().response();
 		 * 

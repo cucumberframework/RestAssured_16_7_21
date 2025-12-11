@@ -25,13 +25,13 @@ public class Basics {
 		RestAssured.baseURI = "https://rahulshettyacademy.com";
 		String response = given().log().all().queryParam("key", "qaclick123").body(payload.Addplace()).when()
 				.post("/maps/api/place/add/json").then().assertThat().statusCode(200).body("scope", equalTo("APP"))
-				.header("Server", "Apache/2.4.18 (Ubuntu)").extract().response().asString();
+				.extract().response().asString();
 
 		System.out.println(response);
 
 //PUT request 
 //To extract the place_id from the response
-		 // for parsing json
+		// for parsing json
 		String placeID = BaseClass.JsonParse(response, "place_id");
 		System.out.println(placeID);
 		String updatedPlace = "Bhilgaon Place Updated";
@@ -45,7 +45,7 @@ public class Basics {
 				.get("/maps/api/place/get/json").then().log().all().assertThat().statusCode(200).extract().response()
 				.asString();
 		System.out.println(getResponse);
-		String updatedAddressReponse=BaseClass.JsonParse(getResponse, "address");
+		String updatedAddressReponse = BaseClass.JsonParse(getResponse, "address");
 		System.out.println(updatedAddressReponse);
 		Assert.assertEquals(updatedPlace, updatedAddressReponse);
 	}

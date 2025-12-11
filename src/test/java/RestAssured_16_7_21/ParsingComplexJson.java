@@ -24,7 +24,7 @@ public class ParsingComplexJson {
 //We need to extract the title from the first course which is in array that's why we need to add that in []
 //if we need to extract from the array .
 
-		System.out.println(js.get("courses[0].title"));
+		System.out.println(js.getString("courses[0].title"));
 		System.out.println("--------------------------");
 
 //4. Print All course titles and their respective Prices
