@@ -9,9 +9,9 @@ steps:
 # Checkout code
 - checkout: self
 
-# Run REST Assured tests using Maven
+# Run Maven tests (TestNG + Selenium + REST Assured)
 - task: Maven@4
-  displayName: "Run REST Assured API Automation Tests"
+  displayName: "Run Selenium + TestNG + REST Assured Tests"
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean test'
@@ -20,20 +20,20 @@ steps:
     jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testResultsFiles: '**/surefire-reports/testng-results.xml'
 
-# Publish test results
+# Publish TestNG test results in Azure DevOps
 - task: PublishTestResults@2
-  displayName: "Publish Test Results (JUnit/TestNG)"
+  displayName: "Publish TestNG Results"
   inputs:
-    testResultsFiles: '**/surefire-reports/*.xml'
+    testResultsFiles: '**/surefire-reports/testng-results.xml'
+    testRunTitle: 'Automation Test Execution - Selenium + API'
     mergeTestResults: true
-    testRunTitle: 'REST Assured API Automation'
 
-# Optional: Publish logs, JSON reports, etc.
+# Optional: Publish Selenium screenshots or logs on failure
 - task: PublishBuildArtifacts@1
-  displayName: "Publish REST Assured Logs"
+  displayName: "Publish Screenshots & Logs"
   inputs:
     PathtoPublish: 'target'
-    ArtifactName: 'RestAssuredLogs'
+    ArtifactName: 'AutomationArtifacts'
     publishLocation: 'Container'
