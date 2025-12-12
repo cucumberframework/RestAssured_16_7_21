@@ -1,7 +1,5 @@
 # Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# Build Java project and run REST Assured API Automation tests
 
 trigger:
 - master
@@ -11,6 +9,8 @@ pool:
 
 steps:
 - checkout: self
+
+# Run Maven tests
 - task: Maven@4
   displayName: "Run API Automation Tests"
   inputs:
@@ -22,22 +22,11 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-<<<<<<< HEAD
-    goals: 'package'
-	
-	- script: |
-		    mvn clean install
-		  displayName: 'Build the project'
 
-		- script: |
-		    mvn test
-		  displayName: 'Run TestNG Tests'
-
-=======
+# Publish test results
 - task: PublishTestResults@2
   displayName: "Publish JUnit/TestNG Results"
   inputs:
     testResultsFiles: '**/surefire-reports/*.xml'
     testRunTitle: 'REST Assured API Automation'
     mergeTestResults: true
->>>>>>> dbdeed5c7ca5fac8e69ef4a40f7868823e684f17
