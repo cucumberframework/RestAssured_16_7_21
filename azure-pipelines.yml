@@ -1,18 +1,17 @@
-# Maven
-# Build Java project and run REST Assured API Automation tests
-
 trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
+
+# Checkout code
 - checkout: self
 
-# Run Maven tests
+# Run REST Assured tests using Maven
 - task: Maven@4
-  displayName: "Run API Automation Tests"
+  displayName: "Run REST Assured API Automation Tests"
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean test'
@@ -25,8 +24,16 @@ steps:
 
 # Publish test results
 - task: PublishTestResults@2
-  displayName: "Publish JUnit/TestNG Results"
+  displayName: "Publish Test Results (JUnit/TestNG)"
   inputs:
     testResultsFiles: '**/surefire-reports/*.xml'
-    testRunTitle: 'REST Assured API Automation'
     mergeTestResults: true
+    testRunTitle: 'REST Assured API Automation'
+
+# Optional: Publish logs, JSON reports, etc.
+- task: PublishBuildArtifacts@1
+  displayName: "Publish REST Assured Logs"
+  inputs:
+    PathtoPublish: 'target'
+    ArtifactName: 'RestAssuredLogs'
+    publishLocation: 'Container'
